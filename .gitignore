@@ -6,6 +6,8 @@
 ### white list ###
 !/.zshrc
 !/.vimrc
+!/.bin/
+!/.bin/**
 !/.gitignore_global
 
 
