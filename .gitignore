@@ -1,0 +1,14 @@
+# Specified by the white list below
+### all ignore ###
+/*
+/.**
+
+### white list ###
+!/.zshrc
+!/.vimrc
+!/.gitignore_global
+
+
+!/README.md
+!.gitignore
+!.gitkeep
