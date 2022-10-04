@@ -1,1 +1,3 @@
 # dotfiles
+depending:
+- zinit
