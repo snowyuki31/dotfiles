@@ -9,7 +9,7 @@
 !/.bin/
 !/.bin/**
 !/.gitignore_global
-
+!/.zsh
 
 !/README.md
 !.gitignore
