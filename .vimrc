@@ -1,8 +1,9 @@
 "----------------------------
 " vim-jetpack
 "----------------------------
-runtime */jetpack.vim
+packadd vim-jetpack
 call jetpack#begin()
+Jetpack 'tani/vim-jetpack', {'opt': 1} "bootstrap
 Jetpack 'vim-airline/vim-airline'
 Jetpack 'vim-airline/vim-airline-themes'
 Jetpack 'ryanoasis/vim-devicons'
@@ -55,6 +56,8 @@ set ruler
 set ttimeoutlen=50
 set tabstop=2
 
+set shortmess=aF
+set cmdheight=1
 "----------------------------
 " Airline settings
 "----------------------------

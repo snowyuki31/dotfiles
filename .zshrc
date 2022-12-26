@@ -47,6 +47,9 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit ice wait lucid
 zinit light zsh-users/zsh-autosuggestions
 
+zinit ice lucid wait'0'
+zinit light joshskidmore/zsh-fzf-history-search
+
 #----------------------------
 # History
 #----------------------------
@@ -60,7 +63,6 @@ setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt inc_append_history
 
-
 #----------------------------
 # Utility
 #----------------------------
@@ -73,11 +75,25 @@ setopt AUTO_PARAM_KEYS
 alias ls='ls --color=auto'
 alias la='ls -a'
 alias c='clear'
-eval "$(anyenv init -)"
-alias air=~/.air
 
+#----------------------------
+# Other tools 
+#----------------------------
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
-# Change Prompt if x64_
-if [ "$(uname -m)" != "arm64" ]; then
-	PROMPT+='%F{cyan}x86_64 ❯ %f'
-fi
+#----------------------------
+# Other settings 
+#----------------------------
+# Limit the number of files to open.
+ulimit -n 10240
+
+# Apply local settings
+if [ -e ~/.zshrc.local ]; then source ~/.zshrc.local; fi
+
+# Apply .zsh/* settings
+# for i in ~/.zsh/*.zsh; do
+#	 source $i
+# done
