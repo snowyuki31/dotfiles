@@ -94,6 +94,6 @@ ulimit -n 10240
 if [ -e ~/.zshrc.local ]; then source ~/.zshrc.local; fi
 
 # Apply .zsh/* settings
-# for i in ~/.zsh/*.zsh; do
-#	 source $i
-# done
+for i in ~/.zsh/*.zsh; do
+	 source $i
+done
