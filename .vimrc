@@ -38,6 +38,10 @@ nnoremap x "_x
 nnoremap d "_d
 nnoremap D "_D
 
+" 行末移動
+nnoremap <Space>] $
+
+
 "----------------------------
 " Display settings
 "----------------------------

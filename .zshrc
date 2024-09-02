@@ -96,4 +96,9 @@ if [ -e ~/.zshrc.local ]; then source ~/.zshrc.local; fi
 # Apply .zsh/* settings
 for i in ~/.zsh/*.zsh; do
 	 source $i
+
+
 done
+
+# NODE OPTIONS
+export NODE_OPTIONS="--max-old-space-size=4096"
