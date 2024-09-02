@@ -1,0 +1,24 @@
+[core]
+  excludesFile = ./.gitignore_global
+  autocrlf = false
+[include]
+  path = ~/.gitconfig_shared
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[url "git@github.com:"]
+	insteadOf = https://github.com
+[fixup]
+    menu = fzf --height '60%' \
+                --bind 'tab:toggle-preview' \
+                --preview 'git show --color {+1}' \
+                --preview-window=up:80% \
+                --prompt 'Select commit: '
+	commit = true
+[rebase]
+	autosquash = true
+[alias]
+	tree = log --graph --all --format=\"%x09%C(yellow)%h%Creset %s %C(brightgreen)(%an)%Creset %C(magenta bold)%d%Creset\"
+	cleanup = !git branch --merged | egrep -v '\\*|main|master|develop' | xargs git branch -d

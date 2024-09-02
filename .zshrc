@@ -77,7 +77,7 @@ alias la='ls -a'
 alias c='clear'
 
 #----------------------------
-# Other tools 
+# Other tools
 #----------------------------
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -85,7 +85,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
 #----------------------------
-# Other settings 
+# Other settings
 #----------------------------
 # Limit the number of files to open.
 ulimit -n 10240

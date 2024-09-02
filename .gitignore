@@ -9,6 +9,7 @@
 !/.bin/
 !/.bin/**
 !/.gitignore_global
+!/.gitconfig
 !/.zsh
 !/.zsh/**
 
