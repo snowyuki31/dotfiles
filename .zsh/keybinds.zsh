@@ -53,7 +53,7 @@ function kiro-spec-fzf() {
 
 # ZLE ウィジェットとして登録して Ctrl-K に割り当て
 zle -N kiro-spec-fzf
-bindkey '^k' kiro-spec-fzf   # 既存の kill-line を上書きします
+bindkey "^k" kiro-spec-fzf 
 
 zle -N ghq-fzf
 bindkey "^g" ghq-fzf
