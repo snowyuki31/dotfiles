@@ -22,3 +22,6 @@
 [alias]
 	tree = log --graph --all --format=\"%x09%C(yellow)%h%Creset %s %C(brightgreen)(%an)%Creset %C(magenta bold)%d%Creset\"
 	cleanup = !git branch --merged | egrep -v '\\*|main|master|develop' | xargs git branch -d
+[user]
+	name = Yuki Maeda
+	email = 47184244+snowyuki31@users.noreply.github.com
