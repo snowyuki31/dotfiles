@@ -26,6 +26,35 @@ function git-fzf-branch() {
     zle reset-prompt
 }
 
+# --- Ctrl-K: .kiro/spec/ ディレクトリを FZF で選択してパスを pbcopy ---
+function kiro-spec-fzf() {
+  # Git ルートを取得（リポジトリ外なら即終了）
+  local git_root
+  git_root="$(git rev-parse --show-toplevel 2>/dev/null)" || return 1
+
+  # .kiro/spec が無ければ終了
+  local spec_base="${git_root}/.kiro/spec"
+  [[ -d "${spec_base}" ]] || return 1
+
+  # 直下のディレクトリ一覧を FZF で選択
+  local selected
+  selected="$(command find "${spec_base}" -mindepth 1 -maxdepth 1 -type d -printf '%P\n' \
+              | fzf --prompt='.kiro/spec> ' --query="$LBUFFER")" || return 1
+
+  # 選択結果をクリップボードへ
+  if [[ -n "${selected}" ]]; then
+    local rel_path=".kiro/spec/${selected}/"
+    printf '%s' "${rel_path}" | pbcopy   # macOS
+    # printf '%s' "${rel_path}" | xclip -selection clipboard   # Linux の場合
+  fi
+
+  zle reset-prompt
+}
+
+# ZLE ウィジェットとして登録して Ctrl-K に割り当て
+zle -N kiro-spec-fzf
+bindkey '^k' kiro-spec-fzf   # 既存の kill-line を上書きします
+
 zle -N ghq-fzf
 bindkey "^g" ghq-fzf
 
