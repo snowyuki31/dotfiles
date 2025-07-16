@@ -35,7 +35,8 @@ function kiro-spec-fzf() {
   sel=$(ls -1 "$base" | fzf --query="$LBUFFER") || return
   [[ -n $sel ]] || return
 
-  printf '.kiro/specs/%s/\n' "$sel" | pbcopy   # macOS（Linux は xclip 等に置換）
+  printf '.kiro/specs/%s/' "$sel" | pbcopy   # macOS（Linux は xclip 等に置換）
+  zle reset-prompt
 }
 
 # ZLE ウィジェットとして登録して Ctrl-K に割り当て
