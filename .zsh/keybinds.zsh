@@ -28,27 +28,14 @@ function git-fzf-branch() {
 
 # --- Ctrl-K: .kiro/spec/ ディレクトリを FZF で選択してパスを pbcopy ---
 function kiro-spec-fzf() {
-  # Git ルートを取得（リポジトリ外なら即終了）
-  local git_root
-  git_root="$(git rev-parse --show-toplevel 2>/dev/null)" || return 1
+  local base sel
+  base="$(git -C . rev-parse --show-toplevel 2>/dev/null)/.kiro/specs" || return
+  [[ -d $base ]] || return
 
-  # .kiro/spec が無ければ終了
-  local spec_base="${git_root}/.kiro/spec"
-  [[ -d "${spec_base}" ]] || return 1
+  sel=$(ls -1 "$base" | fzf --query="$LBUFFER") || return
+  [[ -n $sel ]] || return
 
-  # 直下のディレクトリ一覧を FZF で選択
-  local selected
-  selected="$(command find "${spec_base}" -mindepth 1 -maxdepth 1 -type d -printf '%P\n' \
-              | fzf --prompt='.kiro/spec> ' --query="$LBUFFER")" || return 1
-
-  # 選択結果をクリップボードへ
-  if [[ -n "${selected}" ]]; then
-    local rel_path=".kiro/spec/${selected}/"
-    printf '%s' "${rel_path}" | pbcopy   # macOS
-    # printf '%s' "${rel_path}" | xclip -selection clipboard   # Linux の場合
-  fi
-
-  zle reset-prompt
+  printf '.kiro/specs/%s/\n' "$sel" | pbcopy   # macOS（Linux は xclip 等に置換）
 }
 
 # ZLE ウィジェットとして登録して Ctrl-K に割り当て
