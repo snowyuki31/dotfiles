@@ -12,7 +12,7 @@
 USER_INPUT="$1"
 
 # Define position (fixed value)
-POSITION="思考"
+POSITION="thoughts"
 
 # URL-encode the content and position using Python's urllib
 ENCODED_CONTENT=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.stdin.read()))" <<< "- $USER_INPUT")
