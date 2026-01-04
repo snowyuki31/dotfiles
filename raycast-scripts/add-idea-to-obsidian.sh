@@ -9,13 +9,14 @@
 # @raycast.icon 💡
 # @raycast.argument1 { "type": "text", "placeholder": "content", "optional": false }
 
-USER_INPUT="$1"
+CURRENT_TIME=$(date +"%H:%M")
+CONTENT="- $1 ($CURRENT_TIME)"
 
 # Define position (fixed value)
 POSITION="thoughts"
 
 # URL-encode the content and position using Python's urllib
-ENCODED_CONTENT=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.stdin.read()))" <<< "- $USER_INPUT")
+ENCODED_CONTENT=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.stdin.read()))" <<< "$CONTENT")
 ENCODED_POSITION=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.stdin.read()))" <<< "$POSITION")
 
 # Construct the Obsidian QuickAdd URI and open it in the background
