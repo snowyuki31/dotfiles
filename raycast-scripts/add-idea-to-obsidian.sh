@@ -15,7 +15,7 @@ USER_INPUT="$1"
 POSITION="思考"
 
 # URL-encode the content and position using Python's urllib
-ENCODED_CONTENT=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.stdin.read()))" <<< "$USER_INPUT")
+ENCODED_CONTENT=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.stdin.read()))" <<< "- $USER_INPUT")
 ENCODED_POSITION=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.stdin.read()))" <<< "$POSITION")
 
 # Construct the Obsidian QuickAdd URI and open it in the background
