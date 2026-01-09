@@ -9,15 +9,19 @@
 # @raycast.icon 🚀
 # @raycast.argument1 { "type": "text", "placeholder": "content", "optional": false }
 # @raycast.argument2 { "type": "dropdown", "placeholder": "context", "data": [ {"title": "self", "value": "#context/self"}, {"title": "j-cat", "value": "#context/j-cat"} ] }
+# @raycast.argument3 { "type": "dropdown", "placeholder": "priority", "optional": true, "data": [ {"title": "🔺", "value": "🔺"}, {"title": "⏫", "value": "⏫"}, {"title": "🔼", "value": "🔼"}, {"title": "🔽", "value": "🔽"}, {"title": "⏬", "value": "⏬"} ] }
 
-# Build the user input from up to three positional arguments, preserving newlines
 CURRENT_DATE=$(date +"%Y-%m-%d")
-CONTENT="- [ ] $1 $2 📅 $CURRENT_DATE"
+
+USED_DATE="$CURRENT_DATE"
 
 # Define position (fixed value)
 POSITION="tasks"
 
-# URL-encode the content and position using Python's urllib
+# Build the CONTENT string including the validated date and priority
+CONTENT="- [ ] $1 $2 📅 $USED_DATE $3"
+
+# URL-encode the content, position, and priority using Python's urllib
 ENCODED_CONTENT=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.stdin.read()))" <<< "$CONTENT")
 ENCODED_POSITION=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.stdin.read()))" <<< "$POSITION")
 
